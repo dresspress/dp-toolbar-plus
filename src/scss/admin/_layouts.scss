@@ -1,0 +1,41 @@
+html.wp-toolbar {
+  padding-top: 0;
+}
+
+body {
+  background: #f1f2f3;
+}
+
+#wpwrap {
+  display: flex;
+  flex-direction: column;
+}
+
+#adminmenumain {
+}
+
+#wpadminbar {
+  // display: none;
+}
+
+#wpcontent,
+#wpfooter {
+  margin-left: 180px;
+  padding-left: 0;
+}
+
+#wpcontent {
+  // box-sizing: border-box;
+  padding: calc(64px + 1.5rem) 1.5rem 3rem;
+  flex: 1;
+}
+
+@media screen and (max-width: 600px) {
+  #wpbody {
+    padding-top: 0;
+  }
+}
+
+#wpfooter {
+  padding: 1.5rem 1.5rem;
+}
