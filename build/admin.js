@@ -2,25 +2,15 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/admin.scss":
-/*!************************!*\
-  !*** ./src/admin.scss ***!
-  \************************/
+/***/ "./src/scss/admin.scss":
+/*!*****************************!*\
+  !*** ./src/scss/admin.scss ***!
+  \*****************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
-
-/***/ }),
-
-/***/ "lodash":
-/*!*************************!*\
-  !*** external "lodash" ***!
-  \*************************/
-/***/ (function(module) {
-
-module.exports = window["lodash"];
 
 /***/ }),
 
@@ -44,6 +34,26 @@ module.exports = window["wp"]["components"];
 
 /***/ }),
 
+/***/ "@wordpress/data":
+/*!******************************!*\
+  !*** external ["wp","data"] ***!
+  \******************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["data"];
+
+/***/ }),
+
+/***/ "@wordpress/dom-ready":
+/*!**********************************!*\
+  !*** external ["wp","domReady"] ***!
+  \**********************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["domReady"];
+
+/***/ }),
+
 /***/ "@wordpress/element":
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -61,6 +71,46 @@ module.exports = window["wp"]["element"];
 /***/ (function(module) {
 
 module.exports = window["wp"]["i18n"];
+
+/***/ }),
+
+/***/ "@wordpress/notices":
+/*!*********************************!*\
+  !*** external ["wp","notices"] ***!
+  \*********************************/
+/***/ (function(module) {
+
+module.exports = window["wp"]["notices"];
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/esm/extends.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/esm/extends.js ***!
+  \************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ _extends; }
+/* harmony export */ });
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
 
 /***/ })
 
@@ -139,17 +189,22 @@ var __webpack_exports__ = {};
   !*** ./src/admin.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _admin_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./admin.scss */ "./src/admin.scss");
-/* harmony import */ var _wordpress_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/api */ "@wordpress/api");
-/* harmony import */ var _wordpress_api__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash */ "lodash");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/esm/extends.js");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _scss_admin_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scss/admin.scss */ "./src/scss/admin.scss");
+/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/dom-ready */ "@wordpress/dom-ready");
+/* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/api */ "@wordpress/api");
+/* harmony import */ var _wordpress_api__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/notices */ "@wordpress/notices");
+/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_wordpress_notices__WEBPACK_IMPORTED_MODULE_8__);
 
 
 
@@ -158,196 +213,284 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-class App extends _wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Component {
+
+
+
+const Notices = () => {
+  const notices = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_7__.useSelect)(select => select(_wordpress_notices__WEBPACK_IMPORTED_MODULE_8__.store).getNotices().filter(notice => {
+    return notice.type === 'snackbar';
+  }), []);
+  const {
+    removeNotice
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_7__.useDispatch)(_wordpress_notices__WEBPACK_IMPORTED_MODULE_8__.store);
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.SnackbarList, {
+    className: "dp-toolbar-settings-notices",
+    notices: notices,
+    onRemove: removeNotice
+  });
+};
+
+var roleOptions = [];
+var capList = [];
+var settings = dpAdminBarSettings;
+var roles = dpAdminBarSettings.roles;
+
+for (const [option, role] of Object.entries(roles)) {
+  roleOptions.push({
+    label: role.name,
+    value: option
+  });
+  capList = capList.concat(Object.keys(role.capabilities));
+}
+
+capList = _.uniq(capList);
+
+const DisplayRule = ({
+  label = '',
+  onChange,
+  active = false,
+  action = '',
+  logged_in = false,
+  not_logged_in = true,
+  roles = [],
+  caps = [],
+  scope = ''
+}) => {
+  return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.CheckboxControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Enable display rule for front-end Toolbar', 'dp-toolbar'),
+    checked: active,
+    onChange: active => {
+      onChange({
+        active
+      });
+    }
+  }), active && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: "dp-toolbar-display-rule"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.__experimentalHStack, {
+    align: "center",
+    justify: "flex-start"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.SelectControl, {
+    labelPosition: "side",
+    value: action,
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Show Toolbar', 'dp-toolbar'),
+      value: 'show'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Hide Toolbar', 'dp-toolbar'),
+      value: 'hide'
+    }],
+    onChange: action => {
+      onChange({
+        action
+      });
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.SelectControl, {
+    labelPosition: "side",
+    value: scope,
+    options: [{
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('for all users', 'dp-toolbar'),
+      value: 'all'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('for all users except administrators', 'dp-toolbar'),
+      value: 'not_admins'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('for logged in users', 'dp-toolbar'),
+      value: 'logged_in'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('for non-logged in users', 'dp-toolbar'),
+      value: 'not_logged_in'
+    }, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('for custom user scope', 'dp-toolbar'),
+      value: 'custom'
+    }],
+    onChange: scope => {
+      onChange({
+        scope
+      });
+    }
+  })), scope == 'custom' && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: "dp-toolbar-custom-scope"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.CheckboxControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('All non-logged in users', 'dp-toolbar'),
+    checked: not_logged_in,
+    onChange: not_logged_in => {
+      onChange({
+        not_logged_in
+      });
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.CheckboxControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('All logged in users ', 'dp-toolbar'),
+    checked: logged_in,
+    onChange: logged_in => {
+      onChange({
+        logged_in
+      });
+    }
+  }), logged_in && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: "dp-toolbar-roles-control"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("label", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('with one of selected roles:', 'dp-toolbar')), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: "dp-toolbar-roles-option-list"
+  }, roleOptions.map((role, index) => {
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.CheckboxControl, {
+      key: index,
+      label: role.label,
+      checked: roles.includes(role.value),
+      value: role.value,
+      onChange: state => {
+        roles = state ? _.union(roles, [role.value]) : _.without(roles, role.value);
+        onChange({
+          roles
+        });
+      }
+    });
+  }))), logged_in && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: 'dp-toolbar-caps-control'
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.FormTokenField, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('AND have one of selected capabilities:', 'textdomai'),
+    value: caps,
+    placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('e.g. manage_options'),
+    suggestions: capList,
+    tokenizeOnSpace: true,
+    onChange: caps => {
+      onChange({
+        caps
+      });
+    },
+    __experimentalExpandOnFocus: true,
+    __experimentalValidateInput: value => {
+      return capList.includes(value);
+    }
+  })))));
+};
+
+class Page extends _wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Component {
   constructor() {
     super(...arguments);
-    this.setStyle = this.setStyle.bind(this);
+    const defaultRule = {
+      active: false,
+      action: '',
+      user: true,
+      guest: true,
+      roles: [],
+      caps: []
+    };
     this.state = {
-      adminSettings: {},
-      exampleSelect: "",
-      exampleText: "",
-      exampleText2: "",
-      exampleText3: "",
-      exampleToggle: false,
-      isAPILoaded: false
+      front_display_rule: settings.front_display_rule,
+      // admin_display_rule: settings.admin_display_rule,
+      disable_user_pref: settings.disable_user_pref,
+      auto_hide_show: settings.auto_hide_show,
+      remove_wp_logo: settings.remove_wp_logo,
+      isSaving: false
     };
   }
 
-  componentDidMount() {
-    _wordpress_api__WEBPACK_IMPORTED_MODULE_2___default().loadPromise.then(() => {
-      this.settings = new (_wordpress_api__WEBPACK_IMPORTED_MODULE_2___default().models.Settings)();
-      const {
-        isAPILoaded
-      } = this.state;
-
-      if (isAPILoaded === false) {
-        this.settings.fetch().then(response => {
-          console.log(response);
-          const adminSettings = (0,lodash__WEBPACK_IMPORTED_MODULE_5__.mapKeys)(response["dp_admin_settings"], (v, k) => (0,lodash__WEBPACK_IMPORTED_MODULE_5__.camelCase)(k));
-          console.log('adminSettings', adminSettings);
-          this.setState({
-            adminSettings: adminSettings,
-            exampleSelect: response["wholesomecode_wholesome_plugin_example_select"],
-            exampleText: response["wholesomecode_wholesome_plugin_example_text"],
-            exampleText2: response["wholesomecode_wholesome_plugin_example_text_2"],
-            exampleText3: response["wholesomecode_wholesome_plugin_example_text_3"],
-            exampleToggle: Boolean(response["wholesomecode_wholesome_plugin_example_toggle"]),
-            isAPILoaded: true
-          });
-          console.log(this.state);
-        });
-      }
-    });
-  }
-
-  setStyle(name, value) {
-    // console.log(target.name);
-    // console.log(target.value);
-    document.querySelector('#adminmenumain').style.setProperty("--dp-menu-width", value);
-    const adminSettings = this.state.adminSettings;
-    adminSettings[name] = value;
-    const settings = new (_wordpress_api__WEBPACK_IMPORTED_MODULE_2___default().models.Settings)({
-      adminSettings
-    });
-    settings.save();
-    this.setState({
-      adminSettings
-    });
-  }
+  componentDidMount() {}
 
   render() {
     const {
-      exampleSelect,
-      exampleText,
-      exampleText2,
-      exampleText3,
-      exampleToggle,
-      adminSettings,
-      isAPILoaded
+      front_display_rule,
+      admin_display_rule,
+      disable_user_pref,
+      auto_hide_show,
+      remove_wp_logo,
+      isSaving
     } = this.state;
-    const settings = adminSettings;
-    console.log(settings);
-
-    if (!isAPILoaded) {
-      return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Placeholder, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Spinner, null));
-    }
-
-    const units = [{
-      value: 'px',
-      label: 'px',
-      default: 160
-    }, {
-      value: '%',
-      label: '%',
-      default: 20
-    }, {
-      value: 'em',
-      label: 'em',
-      default: 10
-    }];
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "wholesome-plugin__header"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "wholesome-plugin__container"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "wholesome-plugin__title"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("h1", null, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Wholesome Plugin Settings", "wholesome-plugin"), " ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Icon, {
-      icon: "admin-plugins"
-    }))))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Button, {
-      isPrimary: true,
-      onClick: () => {
-        const {
-          adminSettings
-        } = this.state;
-        const settings = new (_wordpress_api__WEBPACK_IMPORTED_MODULE_2___default().models.Settings)({
-          ["dp_admin_settings"]: adminSettings
-        });
-        settings.save().then(res => {
-          console.log('after save', res);
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      className: "dp-admin-page-header"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      className: "dp-admin-page-header-container"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("h1", {
+      className: "dp-admin-page-title"
+    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Toolbar Settings', 'dp-toolbar')))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      className: "dp-admin-page-body"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+      className: "dp-admin-page-content"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Panel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      opened: true,
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('General', 'dp-toolbar')
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.CheckboxControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Remove WP logo from toolbar', 'dp-toolbar'),
+      checked: remove_wp_logo,
+      onChange: remove_wp_logo => {
+        this.setState({
+          remove_wp_logo
         });
       }
-    }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Save", "wholesome-plugin")), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
-      className: "wholesome-plugin__main"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.Panel, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Panel Body One", "wholesome-plugin"),
-      icon: "admin-plugins"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
-      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("An example dropdown field.", "wholesome-plugin"),
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Layout", "wholesome-plugin") // onChange={(value) => this.setStyle('layout', value)}
-      ,
-      options: [{
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Please Select...", "wholesome-plugin"),
-        value: "top"
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Option 1", "wholesome-plugin"),
-        value: "main"
-      }, {
-        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Option 2", "wholesome-plugin"),
-        value: "split"
-      }],
-      value: exampleSelect
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalUnitControl, {
-      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("This is an example text field.", "wholesome-plugin"),
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Admin menu width", "wholesome-plugin"),
-      onChange: value => this.setStyle('menuWidth', value),
-      value: settings.menuWidth,
-      disabledUnits: false,
-      units: units // isPressEnterToChange={true}
-      // min={0}
-
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.RangeControl, {
-      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("This is an example text field.", "wholesome-plugin"),
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("font size", "wholesome-plugin"),
-      onChange: value => this.setStyle('menuWidth', this.state.adminSettings.menuWidth),
-      value: parseInt(settings.menuWidth) // disabledUnits={false}
-      // units={units}
-      // isPressEnterToChange={true}
-      // min={0}
-      ,
-      allowReset: true,
-      resetFallbackValue: 16,
-      withInputField: false
-    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Panel Body Two", "wholesome-plugin"),
-      icon: "admin-plugins"
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Panel Body Three", "wholesome-plugin"),
-      icon: "admin-plugins"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelRow, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
-      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Use PanelRow to place controls inline.", "wholesome-plugin"),
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Example Text 2", "wholesome-plugin"),
-      onChange: exampleText2 => this.setState({
-        exampleText2
-      }),
-      value: exampleText2
-    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
-      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("This control is inline.", "wholesome-plugin"),
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Example Text 3", "wholesome-plugin"),
-      onChange: exampleText3 => this.setState({
-        exampleText3
-      }),
-      value: exampleText3
-    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
-      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Panel Body Four", "wholesome-plugin"),
-      icon: "admin-plugins"
-    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.ToggleControl, {
-      checked: exampleToggle,
-      help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("An example toggle.", "wholesome-plugin"),
-      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)("Example Toggle", "wholesome-plugin") // onChange={(value) => this.setStyle('panel')}
-
-    })))));
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+      opened: true,
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Front-end Toolbar', 'dp-toolbar')
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(DisplayRule, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__.default)({
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Front-end Toolbar display rule', 'dp-toolbar')
+    }, front_display_rule, {
+      onChange: rule => {
+        this.setState({
+          front_display_rule: { ...front_display_rule,
+            ...rule
+          }
+        });
+      }
+    })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.CheckboxControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Force disable Toolbar preference from Edit Profile page', 'dp-toolbar'),
+      checked: disable_user_pref,
+      onChange: disable_user_pref => {
+        this.setState({
+          disable_user_pref
+        });
+      }
+    }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.CheckboxControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Automatically hide and show the toolbar', 'dp-toolbar'),
+      checked: auto_hide_show,
+      onChange: auto_hide_show => {
+        this.setState({
+          auto_hide_show
+        });
+      }
+    }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("p", {
+      className: "dp-admin-page-save-settings"
+    }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.Button, {
+      isPrimary: true,
+      isBusy: isSaving,
+      onClick: () => {
+        this.setState({
+          isSaving: true
+        });
+        const settings = new (_wordpress_api__WEBPACK_IMPORTED_MODULE_4___default().models.Settings)({
+          ['dp_toolbar_settings']: {
+            front_display_rule,
+            disable_user_pref,
+            auto_hide_show,
+            remove_wp_logo
+          }
+        });
+        settings.save().then(res => {
+          this.setState({
+            isSaving: false
+          });
+          (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_7__.dispatch)('core/notices').createNotice('success', (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Settings saved.', 'dp-toolbar'), {
+            type: 'snackbar',
+            isDismissible: true,
+            id: 'save-settings-notice',
+            actions: [{
+              url: '/',
+              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('View site')
+            }]
+          });
+        }).catch(error => {
+          // TODO: Catch error and display for better user experience.
+          console.error('Error:', error);
+        });
+      }
+    }, isSaving ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Saving', 'dp-toolbar') : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('Save Settings', 'dp-toolbar')))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Notices, null)));
   }
 
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const htmlOutput = document.getElementById("wholesome-plugin-settings");
-  let customizer = document.createElement('div');
-  customizer.id = 'dp-admin-customizer';
-  document.body.append(customizer);
-  customizer = document.getElementById("dp-admin-customizer"); // if (customizer) {
+_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_3___default()(() => {
+  const pageWrap = document.getElementById('dp-toolbar-settings-page-wrap');
 
-  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.render)((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(App, null), customizer); // 
+  if (pageWrap) {
+    (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.render)((0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(Page, null), pageWrap);
+  }
 });
 }();
 /******/ })()

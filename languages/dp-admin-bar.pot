@@ -1,0 +1,131 @@
+# Copyright (C) 2021 (dp)
+# This file is distributed under the same license as the (dp) Toolbar Plus plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: (dp) Toolbar Plus 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dp-admin-bar-plus\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-09-05T23:03:57+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: dp-admin-bar\n"
+
+#. Plugin Name of the plugin
+msgid "(dp) Toolbar Plus"
+msgstr ""
+
+#. Description of the plugin
+msgid "Get more control of the Toolbar (Admin-Bar) - Hide toolbar from front-end based on user roles and capabilities, auto hide/show etc."
+msgstr ""
+
+#. Author of the plugin
+msgid "(dp)"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://togetdp.com"
+msgstr ""
+
+#: inc/AdminBarSettingsPage.php:12
+#: src/admin.js:295
+#: build/admin.js:370
+msgid "Toolbar Settings"
+msgstr ""
+
+#: inc/AdminBarSettingsPage.php:13
+msgid "Toolbar"
+msgstr ""
+
+#: src/admin.js:90
+#: build/admin.js:165
+msgid "Enable display rule for front-end Toolbar"
+msgstr ""
+
+#: src/admin.js:108
+#: build/admin.js:183
+msgid "Show Toolbar"
+msgstr ""
+
+#: src/admin.js:112
+#: build/admin.js:187
+msgid "Hide Toolbar"
+msgstr ""
+
+#: src/admin.js:126
+#: build/admin.js:201
+msgid "for all users"
+msgstr ""
+
+#: src/admin.js:130
+#: build/admin.js:205
+msgid "for all users except administrators"
+msgstr ""
+
+#: src/admin.js:137
+#: build/admin.js:212
+msgid "for logged in users"
+msgstr ""
+
+#: src/admin.js:144
+#: build/admin.js:219
+msgid "for non-logged in users"
+msgstr ""
+
+#: src/admin.js:151
+#: build/admin.js:226
+msgid "for custom user scope"
+msgstr ""
+
+#: src/admin.js:167
+#: build/admin.js:242
+msgid "All non-logged in users"
+msgstr ""
+
+#: src/admin.js:178
+#: build/admin.js:253
+msgid "All logged in users "
+msgstr ""
+
+#: src/admin.js:191
+#: build/admin.js:266
+msgid "with one of selected roles:"
+msgstr ""
+
+#: src/admin.js:305
+#: build/admin.js:380
+msgid "Front-end Toolbar Display Control"
+msgstr ""
+
+#: src/admin.js:311
+#: build/admin.js:386
+msgid "Front-end Toolbar display rule"
+msgstr ""
+
+#: src/admin.js:345
+#: build/admin.js:420
+msgid "Force disable Toolbar preference from Edit Profile page"
+msgstr ""
+
+#: src/admin.js:357
+#: build/admin.js:432
+msgid "Automatically hide and show the toolbar"
+msgstr ""
+
+#: src/admin.js:401
+#: build/admin.js:476
+msgid "Settings saved."
+msgstr ""
+
+#: src/admin.js:427
+#: build/admin.js:502
+msgid "Saving"
+msgstr ""
+
+#: src/admin.js:428
+#: build/admin.js:503
+msgid "Save Settings"
+msgstr ""

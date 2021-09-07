@@ -1,9 +1,9 @@
 {
 	"name": "dp-admin-pro",
-	"version": "0.1.0",
-	"description": "Example block written with ESNext standard and JSX support – build step required.",
-	"author": "The WordPress Contributors",
-	"license": "GPL-2.0-or-later",
+	"version": "1.0.0",
+	"description": "Get more control of the Toolbar (Admin-Bar) - Hide toolbar from front-end based on user roles and capabilities, auto hide/show etc.",
+	"author": "(dp)",
+	"license": "GPLv2 or later",
 	"main": "build/index.js",
 	"scripts": {
 		"build": "wp-scripts build",
@@ -11,14 +11,19 @@
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"start": "wp-scripts start",
-		"packages-update": "wp-scripts packages-update"
+		"packages-update": "wp-scripts packages-update",
+		"make-pot": "wp i18n make-pot . languages/dp-admin-bar.pot",
+		"make-json": "wp i18n make-json languages"
 	},
 	"dependencies": {
 		"@wordpress/block-editor": "^7.0.1",
 		"@wordpress/blocks": "^11.0.1",
-		"@wordpress/i18n": "^4.2.1"
+		"@wordpress/dom-ready": "^3.2.1",
+		"@wordpress/i18n": "^4.2.1",
+		"@wordpress/interface": "^4.0.1"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^18.0.0"
+		"@wordpress/scripts": "^18.0.0",
+		"prettier": "^2.3.2"
 	}
 }

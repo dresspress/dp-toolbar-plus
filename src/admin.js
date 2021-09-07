@@ -1,265 +1,420 @@
-import "./admin.scss";
+import './scss/admin.scss';
 
-import api from "@wordpress/api";
+import domReady from '@wordpress/dom-ready';
+
+import api from '@wordpress/api';
+
+import { __ } from '@wordpress/i18n';
 
 import {
 	Button,
-	Icon,
 	Panel,
 	PanelBody,
-	PanelRow,
-	Placeholder,
 	SelectControl,
-	Spinner,
-	TextControl,
-	ToggleControl,
-    RangeControl,
-    __experimentalNumberControl as NumberControl,
-    __experimentalUnitControl as UnitControl,
-    // __experimentalScrollable as Scrollable 
-} from "@wordpress/components";
+	SnackbarList,
+	CheckboxControl,
+	FormTokenField,
+	__experimentalHStack as HStack,
+} from '@wordpress/components';
 
-import { Fragment, render, Component } from "@wordpress/element";
+import { dispatch, useDispatch, useSelect } from '@wordpress/data';
 
-import { __ } from "@wordpress/i18n";
+import { Fragment, render, Component, useState } from '@wordpress/element';
 
-import {camelCase, each, mapKeys} from 'lodash';
+import { store as noticesStore } from '@wordpress/notices';
 
-class App extends Component {
+const Notices = () => {
+	const notices = useSelect(
+		(select) =>
+			select(noticesStore)
+				.getNotices()
+				.filter((notice) => {
+					return notice.type === 'snackbar';
+				}),
+		[]
+	);
+
+	const { removeNotice } = useDispatch(noticesStore);
+
+	return (
+		<SnackbarList
+			className="dp-toolbar-settings-notices"
+			notices={notices}
+			onRemove={removeNotice}
+		/>
+	);
+};
+
+var roleOptions = [];
+var capList = [];
+
+var settings = dpAdminBarSettings;
+var roles = dpAdminBarSettings.roles;
+
+for (const [option, role] of Object.entries(roles)) {
+	roleOptions.push({ label: role.name, value: option });
+	capList = capList.concat(Object.keys(role.capabilities));
+}
+
+capList = _.uniq(capList);
+
+const DisplayRule = ({
+	label = '',
+	onChange,
+	active = false,
+	action = '',
+	logged_in = false,
+	not_logged_in = true,
+	roles = [],
+	caps = [],
+	scope = '',
+}) => {
+	return (
+		<>
+			<CheckboxControl
+				label={__(
+					'Enable display rule for front-end Toolbar',
+					'dp-toolbar'
+				)}
+				checked={active}
+				onChange={(active) => {
+					onChange({ active });
+				}}
+			/>
+
+			{active && (
+				<div className="dp-toolbar-display-rule">
+					<HStack align="center" justify="flex-start">
+						<SelectControl
+							labelPosition="side"
+							value={action}
+							options={[
+								{
+									label: __('Show Toolbar', 'dp-toolbar'),
+									value: 'show',
+								},
+								{
+									label: __('Hide Toolbar', 'dp-toolbar'),
+									value: 'hide',
+								},
+							]}
+							onChange={(action) => {
+								onChange({ action });
+							}}
+						/>
+
+						<SelectControl
+							labelPosition="side"
+							value={scope}
+							options={[
+								{
+									label: __('for all users', 'dp-toolbar'),
+									value: 'all',
+								},
+								{
+									label: __(
+										'for all users except administrators',
+										'dp-toolbar'
+									),
+									value: 'not_admins',
+								},
+								{
+									label: __(
+										'for logged in users',
+										'dp-toolbar'
+									),
+									value: 'logged_in',
+								},
+								{
+									label: __(
+										'for non-logged in users',
+										'dp-toolbar'
+									),
+									value: 'not_logged_in',
+								},
+								{
+									label: __(
+										'for custom user scope',
+										'dp-toolbar'
+									),
+									value: 'custom',
+								},
+							]}
+							onChange={(scope) => {
+								onChange({ scope });
+							}}
+						/>
+					</HStack>
+
+					{scope == 'custom' && (
+						<div className="dp-toolbar-custom-scope">
+							<CheckboxControl
+								label={__(
+									'All non-logged in users',
+									'dp-toolbar'
+								)}
+								checked={not_logged_in}
+								onChange={(not_logged_in) => {
+									onChange({ not_logged_in });
+								}}
+							/>
+
+							<CheckboxControl
+								label={__('All logged in users ', 'dp-toolbar')}
+								checked={logged_in}
+								onChange={(logged_in) => {
+									onChange({ logged_in });
+								}}
+							/>
+
+							{logged_in && (
+								<div className="dp-toolbar-roles-control">
+									<label>
+										{__(
+											'with one of selected roles:',
+											'dp-toolbar'
+										)}
+									</label>
+
+									<div className="dp-toolbar-roles-option-list">
+										{roleOptions.map((role, index) => {
+											return (
+												<CheckboxControl
+													key={index}
+													label={role.label}
+													checked={roles.includes(
+														role.value
+													)}
+													value={role.value}
+													onChange={(state) => {
+														roles = state
+															? _.union(roles, [
+																	role.value,
+															  ])
+															: _.without(
+																	roles,
+																	role.value
+															  );
+														onChange({ roles });
+													}}
+												/>
+											);
+										})}
+									</div>
+								</div>
+							)}
+
+							{logged_in && (
+								<div className={'dp-toolbar-caps-control'}>
+									<FormTokenField
+										label={__(
+											'AND have one of selected capabilities:',
+											'textdomai'
+										)}
+										value={caps}
+										placeholder={__('e.g. manage_options')}
+										suggestions={capList}
+										tokenizeOnSpace={true}
+										onChange={(caps) => {
+											onChange({ caps });
+										}}
+										__experimentalExpandOnFocus={true}
+										__experimentalValidateInput={(
+											value
+										) => {
+											return capList.includes(value);
+										}}
+									/>
+								</div>
+							)}
+						</div>
+					)}
+				</div>
+			)}
+		</>
+	);
+};
+
+class Page extends Component {
 	constructor() {
 		super(...arguments);
 
-        this.setStyle = this.setStyle.bind(this);
+		const defaultRule = {
+			active: false,
+			action: '',
+			user: true,
+			guest: true,
+			roles: [],
+			caps: [],
+		};
 
 		this.state = {
-            adminSettings: {},
-			exampleSelect: "",
-			exampleText: "",
-			exampleText2: "",
-			exampleText3: "",
-			exampleToggle: false,
-			isAPILoaded: false,
+			front_display_rule: settings.front_display_rule,
+			// admin_display_rule: settings.admin_display_rule,
+			disable_user_pref: settings.disable_user_pref,
+			auto_hide_show: settings.auto_hide_show,
+			remove_wp_logo: settings.remove_wp_logo,
+			isSaving: false,
 		};
 	}
 
-	componentDidMount() {
-		api.loadPromise.then(() => {
-			this.settings = new api.models.Settings();
-
-			const { isAPILoaded } = this.state;
-
-			if (isAPILoaded === false) {
-				this.settings.fetch().then((response) => {
-                    console.log(response);
-
-                    const adminSettings = mapKeys(response["dp_admin_settings"], (v, k) => camelCase(k));
-                    console.log('adminSettings', adminSettings);
-
-					this.setState({
-                        adminSettings: adminSettings,
-						exampleSelect:
-							response["wholesomecode_wholesome_plugin_example_select"],
-						exampleText:
-							response["wholesomecode_wholesome_plugin_example_text"],
-						exampleText2:
-							response["wholesomecode_wholesome_plugin_example_text_2"],
-						exampleText3:
-							response["wholesomecode_wholesome_plugin_example_text_3"],
-						exampleToggle: Boolean(
-							response["wholesomecode_wholesome_plugin_example_toggle"]
-						),
-						isAPILoaded: true,
-					});
-                    console.log(this.state);
-				});
-			}
-		});
-	}
-
-    setStyle(name, value) {
-        // console.log(target.name);
-        // console.log(target.value);
-        document.querySelector('#adminmenumain').style.setProperty("--dp-menu-width", value);
-
-
-        const adminSettings = this.state.adminSettings;
-        adminSettings[name] = value;
-
-
-		const settings = new api.models.Settings({adminSettings});
-		settings.save();
-
-        this.setState({ adminSettings });
-    }
+	componentDidMount() {}
 
 	render() {
 		const {
-            
-			exampleSelect,
-			exampleText,
-			exampleText2,
-			exampleText3,
-			exampleToggle,
-            adminSettings,
-			isAPILoaded,
+			front_display_rule,
+			admin_display_rule,
+			disable_user_pref,
+			auto_hide_show,
+			remove_wp_logo,
+			isSaving,
 		} = this.state;
-
-        const settings = adminSettings;
-        console.log(settings);
-
-		if (!isAPILoaded) {
-			return (
-				<Placeholder>
-					<Spinner />
-				</Placeholder>
-			);
-		}
-
-        const units = [
-            { value: 'px', label: 'px', default: 160 },
-            { value: '%', label: '%', default: 20 },
-            { value: 'em', label: 'em', default: 10 },
-        ];
 
 		return (
 			<Fragment>
-				<div className="wholesome-plugin__header">
-					<div className="wholesome-plugin__container">
-						<div className="wholesome-plugin__title">
-							<h1>
-								{__("Wholesome Plugin Settings", "wholesome-plugin")}{" "}
-								<Icon icon="admin-plugins" />
-							</h1>
-						</div>
+				<div className="dp-admin-page-header">
+					<div className="dp-admin-page-header-container">
+						<h1 className="dp-admin-page-title">
+							{__('Toolbar Settings', 'dp-toolbar')}
+						</h1>
 					</div>
 				</div>
 
-				<Button
-							isPrimary
-							onClick={() => {
-								const {
-									adminSettings
-								} = this.state;
-
-								const settings = new api.models.Settings({
-									["dp_admin_settings"]: adminSettings
-								});
-								settings.save().then((res) => {
-console.log('after save', res);
-								});
-							}}
-						>
-							{__("Save", "wholesome-plugin")}
-						</Button>
-
-				<div className="wholesome-plugin__main">
-					<Panel>
-						<PanelBody
-							title={__("Panel Body One", "wholesome-plugin")}
-							icon="admin-plugins"
-						>
-							<SelectControl
-								help={__("An example dropdown field.", "wholesome-plugin")}
-								label={__("Layout", "wholesome-plugin")}
-								// onChange={(value) => this.setStyle('layout', value)}
-								options={[
-									{
-										label: __("Please Select...", "wholesome-plugin"),
-										value: "top",
-									},
-									{
-										label: __("Option 1", "wholesome-plugin"),
-										value: "main",
-									},
-									{
-										label: __("Option 2", "wholesome-plugin"),
-										value: "split",
-									},
-								]}
-								value={exampleSelect}
-							/>
-                            <UnitControl
-								help={__("This is an example text field.", "wholesome-plugin")}
-								label={__("Admin menu width", "wholesome-plugin")}
-								onChange={(value) => this.setStyle('menuWidth', value)}
-								value={settings.menuWidth}
-                                disabledUnits={false}
-                                units={units}
-                                // isPressEnterToChange={true}
-                                // min={0}
-							/>
-                            <RangeControl
-								help={__("This is an example text field.", "wholesome-plugin")}
-								label={__("font size", "wholesome-plugin")}
-								onChange={(value) => this.setStyle('menuWidth', this.state.adminSettings.menuWidth)}
-								value={parseInt(settings.menuWidth)}
-                                // disabledUnits={false}
-                                // units={units}
-                                // isPressEnterToChange={true}
-                                // min={0}
-                                allowReset={true}
-                                resetFallbackValue={16}
-                                withInputField={false}
-							/>
-						</PanelBody>
-						<PanelBody
-							title={__("Panel Body Two", "wholesome-plugin")}
-							icon="admin-plugins"
-						>
-							
-						</PanelBody>
-						<PanelBody
-							title={__("Panel Body Three", "wholesome-plugin")}
-							icon="admin-plugins"
-						>
-							<PanelRow>
-								<TextControl
-									help={__(
-										"Use PanelRow to place controls inline.",
-										"wholesome-plugin"
+				<div className="dp-admin-page-body">
+					<div className="dp-admin-page-content">
+						<Panel>
+							<PanelBody
+								opened={true}
+								title={__('General', 'dp-toolbar')}
+							>
+								<CheckboxControl
+									label={__(
+										'Remove WP logo from toolbar',
+										'dp-toolbar'
 									)}
-									label={__("Example Text 2", "wholesome-plugin")}
-									onChange={(exampleText2) => this.setState({ exampleText2 })}
-									value={exampleText2}
+									checked={remove_wp_logo}
+									onChange={(remove_wp_logo) => {
+										this.setState({ remove_wp_logo });
+									}}
 								/>
-								<TextControl
-									help={__("This control is inline.", "wholesome-plugin")}
-									label={__("Example Text 3", "wholesome-plugin")}
-									onChange={(exampleText3) => this.setState({ exampleText3 })}
-									value={exampleText3}
+							</PanelBody>
+							<PanelBody
+								opened={true}
+								title={__('Front-end Toolbar', 'dp-toolbar')}
+							>
+								<DisplayRule
+									label={__(
+										'Front-end Toolbar display rule',
+										'dp-toolbar'
+									)}
+									{...front_display_rule}
+									onChange={(rule) => {
+										this.setState({
+											front_display_rule: {
+												...front_display_rule,
+												...rule,
+											},
+										});
+									}}
 								/>
-							</PanelRow>
-						</PanelBody>
-						<PanelBody
-							title={__("Panel Body Four", "wholesome-plugin")}
-							icon="admin-plugins"
-						>
-							<ToggleControl
-								checked={exampleToggle}
-								help={__("An example toggle.", "wholesome-plugin")}
-								label={__("Example Toggle", "wholesome-plugin")}
-								// onChange={(value) => this.setStyle('panel')}
-							/>
-						</PanelBody>
-						
-					</Panel>
+
+								{/* <DisplayRule
+                                    // label={__('Admin Toolbar', 'dp-toolbar')}
+                                    {...admin_display_rule}
+                                    onChange={(rule) => {
+                                        this.setState({ admin_display_rule: { ...admin_display_rule, ...rule } })
+                                    }}
+                                /> */}
+
+								<CheckboxControl
+									label={__(
+										'Force disable Toolbar preference from Edit Profile page',
+										'dp-toolbar'
+									)}
+									checked={disable_user_pref}
+									onChange={(disable_user_pref) => {
+										this.setState({ disable_user_pref });
+									}}
+								/>
+								<CheckboxControl
+									label={__(
+										'Automatically hide and show the toolbar',
+										'dp-toolbar'
+									)}
+									checked={auto_hide_show}
+									onChange={(auto_hide_show) => {
+										this.setState({ auto_hide_show });
+									}}
+								/>
+							</PanelBody>
+						</Panel>
+
+						<p className="dp-admin-page-save-settings">
+							<Button
+								isPrimary
+								isBusy={isSaving}
+								onClick={() => {
+									this.setState({ isSaving: true });
+
+									const settings = new api.models.Settings({
+										['dp_toolbar_settings']: {
+											front_display_rule,
+											disable_user_pref,
+											auto_hide_show,
+											remove_wp_logo,
+										},
+									});
+									settings
+										.save()
+										.then((res) => {
+											this.setState({ isSaving: false });
+
+											dispatch(
+												'core/notices'
+											).createNotice(
+												'success',
+												__(
+													'Settings saved.',
+													'dp-toolbar'
+												),
+												{
+													type: 'snackbar',
+													isDismissible: true,
+													id: 'save-settings-notice',
+													actions: [
+														{
+															url: '/',
+															label: __(
+																'View site'
+															),
+														},
+													],
+												}
+											);
+										})
+										.catch((error) => {
+											// TODO: Catch error and display for better user experience.
+											console.error('Error:', error);
+										});
+								}}
+							>
+								{isSaving
+									? __('Saving', 'dp-toolbar')
+									: __('Save Settings', 'dp-toolbar')}
+							</Button>
+						</p>
+					</div>
+					<Notices />
 				</div>
 			</Fragment>
 		);
 	}
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-	const htmlOutput = document.getElementById("wholesome-plugin-settings");
+domReady(() => {
+	const pageWrap = document.getElementById('dp-toolbar-settings-page-wrap');
 
-    let customizer = document.createElement( 'div' );
-    customizer.id = 'dp-admin-customizer';
-    document.body.append(customizer);
-    customizer = document.getElementById("dp-admin-customizer");
-
-
-
-	// if (customizer) {
-		render(<App />, customizer);
-	// 
+	if (pageWrap) {
+		render(<Page />, pageWrap);
+	}
 });

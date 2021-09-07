@@ -1,0 +1,72 @@
+{
+    "translation-revision-date": "2021-09-06 07:10+0800",
+    "generator": "WP-CLI\/2.4.0",
+    "source": "build\/admin.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "zh_CN",
+                "plural-forms": "nplurals=1; plural=0;"
+            },
+            "Toolbar Settings": [
+                "\u7ba1\u7406\u9762\u677f\u5de5\u5177\u680f\u8bbe\u7f6e"
+            ],
+            "Enable display rule for front-end Toolbar": [
+                "\u542f\u7528\u524d\u7aef\u5de5\u5177\u680f\u7684\u663e\u793a\u89c4\u5219"
+            ],
+            "Show Toolbar": [
+                "\u663e\u793a\u5de5\u5177\u680f"
+            ],
+            "Hide Toolbar": [
+                "\u9690\u85cf\u5de5\u5177\u680f"
+            ],
+            "for all users": [
+                "\u9488\u5bf9\u6240\u6709\u7528\u6237"
+            ],
+            "for all users except administrators": [
+                "\u6240\u6709\u7528\u6237\uff08\u7ba1\u7406\u5458\u9664\u5916\uff09"
+            ],
+            "for logged in users": [
+                "\u767b\u5f55\u7528\u6237"
+            ],
+            "for non-logged in users": [
+                "\u7528\u4e8e\u672a\u767b\u5f55\u7684\u7528\u6237"
+            ],
+            "for custom user scope": [
+                "\u7528\u4e8e\u81ea\u5b9a\u4e49\u7528\u6237\u8303\u56f4"
+            ],
+            "All non-logged in users": [
+                "\u6240\u6709\u672a\u767b\u5f55\u7684\u7528\u6237"
+            ],
+            "All logged in users ": [
+                "\u6240\u6709\u767b\u5f55\u7528\u6237"
+            ],
+            "with one of selected roles:": [
+                "\u4e0e\u9009\u5b9a\u7684\u89d2\u8272\u4e4b\u4e00\uff1a"
+            ],
+            "Front-end Toolbar Display Control": [
+                "\u524d\u7aef\u5de5\u5177\u680f\u663e\u793a\u63a7\u5236"
+            ],
+            "Front-end Toolbar display rule": [
+                "\u524d\u7aef\u5de5\u5177\u680f\u663e\u793a\u89c4\u5219"
+            ],
+            "Force disable Toolbar preference from Edit Profile page": [
+                "\u5f3a\u5236\u7981\u7528\u5de5\u5177\u680f\u9996\u9009\u9879\u4ece\u7f16\u8f91\u914d\u7f6e\u6587\u4ef6\u9875\u9762"
+            ],
+            "Automatically hide and show the toolbar": [
+                "\u81ea\u52a8\u9690\u85cf\u5e76\u663e\u793a\u5de5\u5177\u680f"
+            ],
+            "Settings saved.": [
+                "\u8bbe\u7f6e\u5df2\u4fdd\u5b58\u3002"
+            ],
+            "Saving": [
+                "\u4fdd\u5b58"
+            ],
+            "Save Settings": [
+                "\u4fdd\u5b58\u8bbe\u7f6e"
+            ]
+        }
+    }
+}
