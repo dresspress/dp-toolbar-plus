@@ -1,16 +1,17 @@
-=== (dp) Toolbar Plus ===
-Contributors:      (dp)
-Tags:              block
-Tested up to:      5.8.0
-Stable tag:        1.0.0
-Requires at least: 5.0
-Requires PHP:      7.0
-License:           GPLv2 or later
-License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+# (dp) Toolbar Plus
+
+**Contributors:**      (dp) \
+**Tags:**              block \
+**Tested up to:**      5.8.0 \
+**Stable tag:**        1.0.0 \
+**Requires at least:** 5.0 \
+**Requires PHP:**      7.0 \
+**License:**           GPLv2 or later \
+**License URI:**       https://www.gnu.org/licenses/gpl-2.0.html
 
 Get more control of the Toolbar (Admin-Bar) - Hide toolbar from front-end based on 👤 user roles and capabilities, auto hide/show etc.
 
-== Description ==
+## Description
 
 This plugin is used to get more control of the Toolbar (a.k.a. Admin-Bar).
 
@@ -33,20 +34,26 @@ Make the Toolbar hidden by default – and show it when mouse pointer over the t
 
 ➕ **Remove WordPress logo from toolbar**
 
-== Installation ==
+## Installation
 
 1. Search and Install the plugin through the "Plugins > Add New" screen on your WordPress site directly.
 2. OR download, unzip and upload the plugin folder to the `/wp-content/plugins`.
 3. Activate the plugin through the 'Plugins' screen in WordPress.
 4. Navigate to the "Settings > Toolbar" on your site to configure settings.
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions
 
-== Screenshots ==
 
-1. The admin bar settings
 
-== Changelog ==
+## Screenshots
 
-= 1.0.0 =
+### 1. The admin bar settings
+
+![The admin bar settings](https://s.w.org/plugins/(dp)-toolbar-plus/screenshot-1.png)
+
+
+## Changelog
+
+### 1.0.0
+
 * Release
