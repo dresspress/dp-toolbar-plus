@@ -44,7 +44,7 @@ Make the Toolbar hidden by default – and show it when mouse pointer over the t
 
 == Screenshots ==
 
-1. The admin bar settings
+1. The toolbar settings
 
 == Changelog ==
 
