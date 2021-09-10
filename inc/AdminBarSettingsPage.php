@@ -11,10 +11,10 @@ class AdminBarSettingsPage {
 	public static function add_page() {
 		$page_hook = add_submenu_page(
 			'options-general.php',
-			__( 'Toolbar Settings', 'dp-toolbar' ),
-			__( 'Toolbar', 'dp-toolbar' ),
+			__( 'Toolbar Settings', 'dp-toolbar-plus' ),
+			__( 'Toolbar', 'dp-toolbar-plus' ),
 			'manage_options',
-			'dp-admin-bar-general',
+			'dp-toolbar-general',
 			array( __CLASS__, 'render_page' ),
 			10
 		);
@@ -40,7 +40,7 @@ class AdminBarSettingsPage {
 		$admin_js          = 'build/admin.js';
 		$script_asset      = require $script_asset_path;
 		wp_enqueue_script(
-			'dp-admin-bar-admin',
+			'dp-toolbar-admin',
 			DP_TOOLBAR_URL . $admin_js,
 			$script_asset['dependencies'],
 			$script_asset['version'],
@@ -48,12 +48,12 @@ class AdminBarSettingsPage {
 		);
 
 		// set translations.
-		wp_set_script_translations( 'dp-admin-bar-admin', 'dp-toolbar', DP_TOOLBAR_DIR . 'languages/' );
+		wp_set_script_translations( 'dp-toolbar-admin', 'dp-toolbar-plus', DP_TOOLBAR_DIR . 'languages/' );
 
 		// css file.
 		$admin_css = 'build/admin.css';
 		wp_enqueue_style(
-			'dp-admin-bar-admin',
+			'dp-toolbar-admin',
 			DP_TOOLBAR_URL . $admin_css,
 			array( 'wp-components' ),
 			filemtime( DP_TOOLBAR_DIR . $admin_css )
@@ -70,7 +70,7 @@ class AdminBarSettingsPage {
 			$settings
 		);
 
-		wp_add_inline_script( 'dp-admin-bar-admin', 'var dpAdminBarSettings = ' . wp_json_encode( $var ), $var, 'before' );
+		wp_add_inline_script( 'dp-toolbar-admin', 'var dpToolbarSettings = ' . wp_json_encode( $var ), $var, 'before' );
 	}
 
 	public static function admin_body_class( $classes ) {

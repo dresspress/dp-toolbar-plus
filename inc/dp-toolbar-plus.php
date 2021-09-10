@@ -6,7 +6,7 @@
  * Requires PHP:      7.0
  * Version:           1.0.0
  * Author:            (dp)
- * Author URI:        https://getdp.io
+ * Author URI:        https://togetdp.com
  * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       dp-toolbar-plus

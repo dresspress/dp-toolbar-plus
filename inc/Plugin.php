@@ -18,8 +18,7 @@ class Plugin {
 
 		add_action( 'init', array( __CLASS__, 'init' ) );
 
-        
-		// add_action( 'init', array( __CLASS__, 'load_textdomain' ) );
+		add_action( 'init', array( __CLASS__, 'load_textdomain' ) );
 		// add_filter( 'load_textdomain_mofile', array( __CLASS__, 'load_textdomain_mofile' ), 10, 2 );
 
 		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( __CLASS__, 'plugin_action_links' ) );
@@ -56,7 +55,7 @@ class Plugin {
 
 	public static function load_textdomain_mofile( $mofile, $domain ) {
 
-		if ( 'dp-toolbar' === $domain && false !== strpos( $mofile, WP_LANG_DIR . '/plugins/' ) ) {
+		if ( 'dp-toolbar-plus' === $domain && false !== strpos( $mofile, WP_LANG_DIR . '/plugins/' ) ) {
 			$locale = apply_filters( 'plugin_locale', determine_locale(), $domain );
 
 			$mofile = WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) . '/languages/' . $domain . '-' . $locale . '.mo';
@@ -66,11 +65,11 @@ class Plugin {
 	}
 
 	public static function load_textdomain() {
-		load_plugin_textdomain( 'dp-toolbar', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'dp-toolbar-plus', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	public static function plugin_action_links( $actions ) {
-		$actions[] = '<a href="' . esc_url( get_admin_url( null, 'options-general.php?page=dp-admin-bar-general' ) ) . '">' . __( 'Settings', 'dp-admin' ) . '</a>';
+		$actions[] = '<a href="' . esc_url( get_admin_url( null, 'options-general.php?page=dp-toolbar-general' ) ) . '">' . __( 'Settings', 'dp-admin' ) . '</a>';
 
 		return $actions;
 	}

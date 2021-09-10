@@ -46,7 +46,7 @@ class AdminBarAutoHideShow {
 					transform: translate(0, -100%);
 					transition: .3s;
 				}
-				.dp-admin-bar-auto-show #wpadminbar {
+				.dp-toolbar-auto-show #wpadminbar {
 					transform: translate(0, 0);
 				}
 			}
@@ -65,7 +65,7 @@ class AdminBarAutoHideShow {
 			window.addEventListener('DOMContentLoaded', (event) => {
 				const adminBar = document.getElementById('wpadminbar');
 				const html = document.documentElement;
-				const autoShowClassName = 'dp-admin-bar-auto-show';
+				const autoShowClassName = 'dp-toolbar-auto-show';
 
 				var adminBarStatus = 'hidden';
 

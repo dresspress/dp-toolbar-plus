@@ -1,6 +1,6 @@
 === (dp) Toolbar Plus ===
-Contributors:      (dp)
-Tags:              block
+Contributors:      getdp
+Tags:              toolbar, admin-bar
 Tested up to:      5.8.0
 Stable tag:        1.0.0
 Requires at least: 5.0
@@ -8,11 +8,11 @@ Requires PHP:      7.0
 License:           GPLv2 or later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-Get more control of the Toolbar (Admin-Bar) - Hide toolbar from front-end based on 👤 user roles and capabilities, auto hide/show etc.
+🎛️ Get more control of the Toolbar (Admin-Bar) - Hide toolbar from front-end based on 👤 user roles and capabilities, auto hide/show etc.
 
 == Description ==
 
-This plugin is used to get more control of the Toolbar (a.k.a. Admin-Bar).
+🎛️ This plugin is used to get more control of the Toolbar (a.k.a. Admin-Bar).
 
 ### Features
 

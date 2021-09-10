@@ -1,4 +1,6 @@
-import './scss/admin.scss';
+/* global dpToolbarSettings */
+
+import './admin.scss';
 
 import domReady from '@wordpress/dom-ready';
 
@@ -23,6 +25,8 @@ import { Fragment, render, Component, useState } from '@wordpress/element';
 
 import { store as noticesStore } from '@wordpress/notices';
 
+import _ from 'lodash';
+
 const Notices = () => {
 	const notices = useSelect(
 		(select) =>
@@ -45,11 +49,11 @@ const Notices = () => {
 	);
 };
 
-var roleOptions = [];
-var capList = [];
+let roleOptions = [];
+let capList = [];
 
-var settings = dpAdminBarSettings;
-var roles = dpAdminBarSettings.roles;
+const settings = dpToolbarSettings;
+const roles = dpToolbarSettings.roles;
 
 for (const [option, role] of Object.entries(roles)) {
 	roleOptions.push({ label: role.name, value: option });
@@ -74,7 +78,7 @@ const DisplayRule = ({
 			<CheckboxControl
 				label={__(
 					'Enable display rule for front-end Toolbar',
-					'dp-toolbar'
+					'dp-toolbar-plus'
 				)}
 				checked={active}
 				onChange={(active) => {
@@ -90,11 +94,17 @@ const DisplayRule = ({
 							value={action}
 							options={[
 								{
-									label: __('Show Toolbar', 'dp-toolbar'),
+									label: __(
+										'Show Toolbar',
+										'dp-toolbar-plus'
+									),
 									value: 'show',
 								},
 								{
-									label: __('Hide Toolbar', 'dp-toolbar'),
+									label: __(
+										'Hide Toolbar',
+										'dp-toolbar-plus'
+									),
 									value: 'hide',
 								},
 							]}
@@ -108,34 +118,37 @@ const DisplayRule = ({
 							value={scope}
 							options={[
 								{
-									label: __('for all users', 'dp-toolbar'),
+									label: __(
+										'for all users',
+										'dp-toolbar-plus'
+									),
 									value: 'all',
 								},
 								{
 									label: __(
 										'for all users except administrators',
-										'dp-toolbar'
+										'dp-toolbar-plus'
 									),
 									value: 'not_admins',
 								},
 								{
 									label: __(
 										'for logged in users',
-										'dp-toolbar'
+										'dp-toolbar-plus'
 									),
 									value: 'logged_in',
 								},
 								{
 									label: __(
 										'for non-logged in users',
-										'dp-toolbar'
+										'dp-toolbar-plus'
 									),
 									value: 'not_logged_in',
 								},
 								{
 									label: __(
 										'for custom user scope',
-										'dp-toolbar'
+										'dp-toolbar-plus'
 									),
 									value: 'custom',
 								},
@@ -151,7 +164,7 @@ const DisplayRule = ({
 							<CheckboxControl
 								label={__(
 									'All non-logged in users',
-									'dp-toolbar'
+									'dp-toolbar-plus'
 								)}
 								checked={not_logged_in}
 								onChange={(not_logged_in) => {
@@ -160,7 +173,10 @@ const DisplayRule = ({
 							/>
 
 							<CheckboxControl
-								label={__('All logged in users ', 'dp-toolbar')}
+								label={__(
+									'All logged in users ',
+									'dp-toolbar-plus'
+								)}
 								checked={logged_in}
 								onChange={(logged_in) => {
 									onChange({ logged_in });
@@ -172,7 +188,7 @@ const DisplayRule = ({
 									<label>
 										{__(
 											'with one of selected roles:',
-											'dp-toolbar'
+											'dp-toolbar-plus'
 										)}
 									</label>
 
@@ -275,7 +291,7 @@ class Page extends Component {
 				<div className="dp-admin-page-header">
 					<div className="dp-admin-page-header-container">
 						<h1 className="dp-admin-page-title">
-							{__('Toolbar Settings', 'dp-toolbar')}
+							{__('Toolbar Settings', 'dp-toolbar-plus')}
 						</h1>
 					</div>
 				</div>
@@ -285,12 +301,12 @@ class Page extends Component {
 						<Panel>
 							<PanelBody
 								opened={true}
-								title={__('General', 'dp-toolbar')}
+								title={__('General', 'dp-toolbar-plus')}
 							>
 								<CheckboxControl
 									label={__(
 										'Remove WP logo from toolbar',
-										'dp-toolbar'
+										'dp-toolbar-plus'
 									)}
 									checked={remove_wp_logo}
 									onChange={(remove_wp_logo) => {
@@ -300,12 +316,15 @@ class Page extends Component {
 							</PanelBody>
 							<PanelBody
 								opened={true}
-								title={__('Front-end Toolbar', 'dp-toolbar')}
+								title={__(
+									'Front-end Toolbar',
+									'dp-toolbar-plus'
+								)}
 							>
 								<DisplayRule
 									label={__(
 										'Front-end Toolbar display rule',
-										'dp-toolbar'
+										'dp-toolbar-plus'
 									)}
 									{...front_display_rule}
 									onChange={(rule) => {
@@ -318,18 +337,10 @@ class Page extends Component {
 									}}
 								/>
 
-								{/* <DisplayRule
-                                    // label={__('Admin Toolbar', 'dp-toolbar')}
-                                    {...admin_display_rule}
-                                    onChange={(rule) => {
-                                        this.setState({ admin_display_rule: { ...admin_display_rule, ...rule } })
-                                    }}
-                                /> */}
-
 								<CheckboxControl
 									label={__(
 										'Force disable Toolbar preference from Edit Profile page',
-										'dp-toolbar'
+										'dp-toolbar-plus'
 									)}
 									checked={disable_user_pref}
 									onChange={(disable_user_pref) => {
@@ -339,7 +350,7 @@ class Page extends Component {
 								<CheckboxControl
 									label={__(
 										'Automatically hide and show the toolbar',
-										'dp-toolbar'
+										'dp-toolbar-plus'
 									)}
 									checked={auto_hide_show}
 									onChange={(auto_hide_show) => {
@@ -356,17 +367,18 @@ class Page extends Component {
 								onClick={() => {
 									this.setState({ isSaving: true });
 
-									const settings = new api.models.Settings({
-										['dp_toolbar_settings']: {
+									let settings = new api.models.Settings({
+										dp_toolbar_settings: {
 											front_display_rule,
 											disable_user_pref,
 											auto_hide_show,
 											remove_wp_logo,
 										},
 									});
+
 									settings
 										.save()
-										.then((res) => {
+										.then(() => {
 											this.setState({ isSaving: false });
 
 											dispatch(
@@ -375,7 +387,7 @@ class Page extends Component {
 												'success',
 												__(
 													'Settings saved.',
-													'dp-toolbar'
+													'dp-toolbar-plus'
 												),
 												{
 													type: 'snackbar',
@@ -399,8 +411,8 @@ class Page extends Component {
 								}}
 							>
 								{isSaving
-									? __('Saving', 'dp-toolbar')
-									: __('Save Settings', 'dp-toolbar')}
+									? __('Saving', 'dp-toolbar-plus')
+									: __('Save Settings', 'dp-toolbar-plus')}
 							</Button>
 						</p>
 					</div>
