@@ -1,0 +1,79 @@
+<?php
+namespace dp\Toolbar;
+
+use \dp\Toolbar\AdminBarSettings;
+
+class AdminBarSettingsPage {
+	public static function init() {
+		add_action( 'admin_menu', array( __CLASS__, 'add_page' ) );
+	}
+
+	public static function add_page() {
+		$page_hook = add_submenu_page(
+			'options-general.php',
+			__( 'Toolbar Settings', 'dp-toolbar-plus' ),
+			__( 'Toolbar', 'dp-toolbar-plus' ),
+			'manage_options',
+			'dp-toolbar-general',
+			array( __CLASS__, 'render_page' ),
+			10
+		);
+
+		add_action( "load-{$page_hook}", array( __CLASS__, 'load_page' ) );
+	}
+
+	public static function load_page() {
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ) );
+		add_filter( 'admin_body_class', array( __CLASS__, 'admin_body_class' ) );
+	}
+
+	public static function render_page() { ?>
+		<div class="dp-admin-page-wrap" id="dp-toolbar-settings-page-wrap">
+	
+		</div>
+		<?php
+	}
+
+	public static function enqueue_scripts() {
+		// js file.
+		$script_asset_path = DP_TOOLBAR_DIR . 'build/admin.asset.php';
+		$admin_js          = 'build/admin.js';
+		$script_asset      = require $script_asset_path;
+		wp_enqueue_script(
+			'dp-toolbar-admin',
+			DP_TOOLBAR_URL . $admin_js,
+			$script_asset['dependencies'],
+			$script_asset['version'],
+			true
+		);
+
+		// set translations.
+		wp_set_script_translations( 'dp-toolbar-admin', 'dp-toolbar-plus', DP_TOOLBAR_DIR . 'languages/' );
+
+		// css file.
+		$admin_css = 'build/admin.css';
+		wp_enqueue_style(
+			'dp-toolbar-admin',
+			DP_TOOLBAR_URL . $admin_css,
+			array( 'wp-components' ),
+			filemtime( DP_TOOLBAR_DIR . $admin_css )
+		);
+
+		// Build inline scripts.
+		$roles    = get_editable_roles();
+		$settings = get_option( 'dp_toolbar_settings' );
+
+		$settings = AdminBarSettings::get_settings();
+
+		$var = array_merge(
+			array( 'roles' => $roles ),
+			$settings
+		);
+
+		wp_add_inline_script( 'dp-toolbar-admin', 'var dpToolbarSettings = ' . wp_json_encode( $var ), $var, 'before' );
+	}
+
+	public static function admin_body_class( $classes ) {
+		return $classes .= 'dp-toolbar-settings-page';
+	}
+}
