@@ -3,7 +3,7 @@
 **Contributors:**      getdp \
 **Tags:**              toolbar, admin-bar \
 **Tested up to:**      5.8.0 \
-**Stable tag:**        1.0.0 \
+**Stable tag:**        1.0.1 \
 **Requires at least:** 5.0 \
 **Requires PHP:**      7.0 \
 **License:**           GPLv2 or later \
@@ -43,13 +43,11 @@ Make the Toolbar hidden by default – and show it when mouse pointer over the t
 
 ## Frequently Asked Questions
 
-
-
 ## Screenshots
 
-### 1. The admin bar settings
+### 1. The toolbar settings
 
-![The admin bar settings](https://s.w.org/plugins/(dp)-toolbar-plus/screenshot-1.png)
+![The toolbar settings](https://s.w.org/plugins/(dp)-toolbar-plus/screenshot-1.png)
 
 
 ## Changelog
