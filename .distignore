@@ -2,9 +2,14 @@
 /.git
 /.github
 /node_modules
+/src
 
 .distignore
 .gitignore
 
 package.json
 package-lock.json
+
+webpack.config.js
+
+README.md
