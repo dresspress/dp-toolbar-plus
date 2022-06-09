@@ -1,9 +1,10 @@
 <?php
-namespace dp\Toolbar;
+
+namespace DP\Toolbar;
 
 class AdminBarSettings {
 	public static function init() {
-		add_action( 'init', array( __CLASS__, 'register_settings' ) );
+		add_action('init', array(__CLASS__, 'register_settings'));
 	}
 
 	public static function register_settings() {
@@ -78,13 +79,13 @@ class AdminBarSettings {
 		);
 	}
 
-	public static function sanitize_settings( $settings ) {
-		if ( ! empty( $settings['front_display_rule'] ) ) {
+	public static function sanitize_settings($settings) {
+		if (!empty($settings['front_display_rule'])) {
 			$rule = $settings['front_display_rule'];
 
-			if ( ! empty( $rule['scope'] ) && $rule['scope'] != 'custom' ) {
-				$keys_to_remove                 = array( 'logged_in', 'not_logged_in', 'caps', 'roles' );
-				$settings['front_display_rule'] = array_diff_key( $rule, array_flip( $keys_to_remove ) );
+			if (!empty($rule['scope']) && $rule['scope'] != 'custom') {
+				$keys_to_remove                 = array('logged_in', 'not_logged_in', 'caps', 'roles');
+				$settings['front_display_rule'] = array_diff_key($rule, array_flip($keys_to_remove));
 			}
 		}
 
@@ -96,9 +97,9 @@ class AdminBarSettings {
 
 		$defaults = $wp_registered_settings['dp_toolbar_settings']['default'];
 
-		$settings = get_option( 'dp_toolbar_settings' );
+		$settings = get_option('dp_toolbar_settings');
 
-		$settings = array_merge( $defaults, $settings );
+		$settings = array_merge($defaults, $settings);
 
 		return $settings;
 	}

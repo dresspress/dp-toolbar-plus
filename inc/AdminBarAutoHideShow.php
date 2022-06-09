@@ -1,6 +1,6 @@
 <?php
 
-namespace dp\Toolbar;
+namespace DP\Toolbar;
 
 /**
  * Undocumented class.
@@ -12,7 +12,7 @@ class AdminBarAutoHideShow {
 	 * @since 1.0.0
 	 */
 	public static function init() {
-		add_action( 'admin_bar_init', array( __CLASS__, 'admin_bar_init' ) );
+		add_action('admin_bar_init', array(__CLASS__, 'admin_bar_init'));
 	}
 
 	/**
@@ -22,10 +22,10 @@ class AdminBarAutoHideShow {
 	 */
 	public static function admin_bar_init() {
 		// remove default css style of admin bar.
-		remove_action( 'wp_head', '_admin_bar_bump_cb', 11 );
+		remove_action('wp_head', '_admin_bar_bump_cb', 11);
 
 		// add auto hide/show style.
-		add_action( 'wp_head', array( __CLASS__, 'admin_bar_bump_cb' ) );
+		add_action('wp_head', array(__CLASS__, 'admin_bar_bump_cb'));
 	}
 
 	/**
@@ -39,13 +39,16 @@ class AdminBarAutoHideShow {
 				html {
 					margin-top: 0 !important;
 				}
+
 				* html body {
 					margin-top: 0 !important;
 				}
+
 				#wpadminbar {
 					transform: translate(0, -100%);
 					transition: .3s;
 				}
+
 				.dp-toolbar-auto-show #wpadminbar {
 					transform: translate(0, 0);
 				}
@@ -55,12 +58,13 @@ class AdminBarAutoHideShow {
 				html {
 					margin-top: 46px !important;
 				}
+
 				* html body {
 					margin-top: 46px !important;
 				}
 			}
 		</style>
-		
+
 		<script>
 			window.addEventListener('DOMContentLoaded', (event) => {
 				const adminBar = document.getElementById('wpadminbar');
@@ -87,6 +91,6 @@ class AdminBarAutoHideShow {
 				});
 			}, true);
 		</script>
-		<?php
+<?php
 	}
 }

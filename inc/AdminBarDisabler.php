@@ -1,8 +1,8 @@
 <?php
 
-namespace dp\Toolbar;
+namespace DP\Toolbar;
 
-use dp\Toolbar\UserScopeChecker;
+use DP\Toolbar\UserScopeChecker;
 
 /**
  * AdminBarDisabler class.
@@ -24,17 +24,17 @@ class AdminBarDisabler {
 	public function __construct() {
 	}
 
-	public static function init( $settings = array() ) {
-		if ( ! empty( $settings['front_display_rule'] ) ) {
+	public static function init($settings = array()) {
+		if (!empty($settings['front_display_rule'])) {
 			self::$front_display_rule = $settings['front_display_rule'];
 
-			add_action( 'wp', array( __CLASS__, 'disableAdminBarFromFront' ) );
+			add_action('wp', array(__CLASS__, 'disableAdminBarFromFront'));
 		}
 
 		self::$disable_user_pref = $settings['disable_user_pref'];
 
-		add_action( 'admin_head-profile.php', array( __CLASS__, 'userPrefInit' ), 10 );
-		add_action( 'admin_head-user-edit.php', array( __CLASS__, 'userPrefInit' ), 10 );
+		add_action('admin_head-profile.php', array(__CLASS__, 'userPrefInit'), 10);
+		add_action('admin_head-user-edit.php', array(__CLASS__, 'userPrefInit'), 10);
 
 		// self::disableAdminBarFromAdmin();
 	}
@@ -46,14 +46,14 @@ class AdminBarDisabler {
 	 * @return void
 	 */
 	public static function disableAdminBarFromFront() {
-		if ( self::isShowAdminBar( self::$front_display_rule ) ) {
-			add_filter( 'show_admin_bar', '__return_true' );
+		if (self::isShowAdminBar(self::$front_display_rule)) {
+			add_filter('show_admin_bar', '__return_true');
 
 			// remove_action( 'template_redirect', '_wp_admin_bar_init', 0 );
 			// remove_action( 'wp_body_open', 'wp_admin_bar_render', 0 );
 			// remove_action( 'wp_footer', 'wp_admin_bar_render', 1000 ); // Back-compat for themes not using `wp_body_open`.
 		} else {
-			add_filter( 'show_admin_bar', '__return_false' );
+			add_filter('show_admin_bar', '__return_false');
 		}
 	}
 
@@ -63,36 +63,36 @@ class AdminBarDisabler {
 	 * @param [type] $rule
 	 * @return boolean
 	 */
-	public static function isShowAdminBar( $rule ) {
-		if ( $rule['scope'] == 'custom' ) {
+	public static function isShowAdminBar($rule) {
+		if ($rule['scope'] == 'custom') {
 			$scope = $rule;
 		} else {
 			$scope = $rule['scope'];
 		}
 
 		require_once 'UserScopeChecker.php';
-		$user_scope_checker = new UserScopeChecker( $scope );
+		$user_scope_checker = new UserScopeChecker($scope);
 
 		$scoped = $user_scope_checker->inScope();
 
-		return $rule['action'] == 'show' ? $scoped : ! $scoped;
+		return $rule['action'] == 'show' ? $scoped : !$scoped;
 	}
 
-	public static function isShowAdminBarForUser( $rule, $user_id = 0 ) {
-		if ( $rule['scope'] == 'custom' ) {
+	public static function isShowAdminBarForUser($rule, $user_id = 0) {
+		if ($rule['scope'] == 'custom') {
 			$scope = $rule;
 		} else {
 			$scope = $rule['scope'];
 		}
 
 		require_once 'UserScopeChecker.php';
-		$user_scope_checker = new UserScopeChecker( $scope );
+		$user_scope_checker = new UserScopeChecker($scope);
 
-		$scoped = $user_scope_checker->isScopedUser( $user_id );
+		$scoped = $user_scope_checker->isScopedUser($user_id);
 
 		// $scoped = self::_isScopedUser( $rule, $user_id );
 
-		return $rule['action'] == 'show' ? $scoped : ! $scoped;
+		return $rule['action'] == 'show' ? $scoped : !$scoped;
 	}
 
 	/**
@@ -101,19 +101,19 @@ class AdminBarDisabler {
 	 * @return void
 	 */
 	public static function disableAdminBarFromAdmin() {
-		add_filter( 'show_admin_bar', '__return_false' );
+		add_filter('show_admin_bar', '__return_false');
 
-		remove_action( 'admin_init', '_wp_admin_bar_init' );
+		remove_action('admin_init', '_wp_admin_bar_init');
 
-		remove_action( 'in_admin_header', 'wp_admin_bar_render', 0 );
+		remove_action('in_admin_header', 'wp_admin_bar_render', 0);
 
 		// Disable admin bar init from signup and activation pages.
-		remove_action( 'before_signup_header', '_wp_admin_bar_init' );
-		remove_action( 'activate_header', '_wp_admin_bar_init' );
+		remove_action('before_signup_header', '_wp_admin_bar_init');
+		remove_action('activate_header', '_wp_admin_bar_init');
 
 		self::removeAdminBarClassNamesFromAdmin();
 
-		add_action( 'admin_head', array( __CLASS__, 'fixAdminMenuPosition' ) );
+		add_action('admin_head', array(__CLASS__, 'fixAdminMenuPosition'));
 	}
 
 	/**
@@ -137,10 +137,10 @@ class AdminBarDisabler {
 	 */
 	public static function removeAdminBarClassNamesFromAdmin() {
 		// Hook to last action before `_wp_admin_html_begin`.
-		add_action( 'current_screen', array( __CLASS__, 'forceIsEmbed' ) );
+		add_action('current_screen', array(__CLASS__, 'forceIsEmbed'));
 
 		// Hook to first action after `is_admin_bar_showing()` is checked for `$admin_body_class'.
-		add_filter( 'admin_body_class', array( __CLASS__, 'restoreIsEmbed' ) );
+		add_filter('admin_body_class', array(__CLASS__, 'restoreIsEmbed'));
 	}
 
 	/**
@@ -175,13 +175,13 @@ class AdminBarDisabler {
 	 * @return void
 	 */
 	public static function overrideAdminBarStyles() {
-		?>
+?>
 		<style>
 			html.wp-toolbar {
 				padding-top: 0;
 			}
 		</style>
-		<?php
+	<?php
 	}
 
 	/**
@@ -190,7 +190,7 @@ class AdminBarDisabler {
 	 * @return void
 	 */
 	public static function fixAdminMenuPosition() {
-		?>
+	?>
 		<style>
 			/* Fix sticky admin menu bug after disable admin bar. */
 			#adminmenuwrap {
@@ -213,7 +213,7 @@ class AdminBarDisabler {
 				}
 			}
 		</style>
-		<?php
+	<?php
 	}
 
 	/**
@@ -224,19 +224,19 @@ class AdminBarDisabler {
 	public static function userPrefInit() {
 		$user_id = self::getEditUserId();
 
-		if ( ! $user_id ) {
+		if (!$user_id) {
 			return;
 		}
 
 		$show_user_pref = true;
-		if ( self::$disable_user_pref ) {
+		if (self::$disable_user_pref) {
 			$show_user_pref = false;
-		} elseif ( self::$front_display_rule ) {
-			$show_user_pref = self::isShowAdminBarForUser( self::$front_display_rule, $user_id );
+		} elseif (self::$front_display_rule) {
+			$show_user_pref = self::isShowAdminBarForUser(self::$front_display_rule, $user_id);
 		}
-		$show_user_pref = apply_filters( 'dp_show_admin_bar_front_pref', $show_user_pref, $user_id );
+		$show_user_pref = apply_filters('dp_show_admin_bar_front_pref', $show_user_pref, $user_id);
 
-		if ( ! $show_user_pref ) {
+		if (!$show_user_pref) {
 			self::hideUserPref();
 		}
 	}
@@ -247,13 +247,13 @@ class AdminBarDisabler {
 	 * @return void
 	 */
 	public static function hideUserPref() {
-		?>
+	?>
 		<style>
 			.user-admin-bar-front-wrap {
 				display: none;
 			}
 		</style>
-		<?php
+<?php
 	}
 
 	/**
@@ -264,12 +264,12 @@ class AdminBarDisabler {
 	public static function getEditUserId() {
 		$user_id = (int) $GLOBALS['user_id'];
 
-		if ( ! $user_id && IS_PROFILE_PAGE ) {
+		if (!$user_id && IS_PROFILE_PAGE) {
 			$current_user = wp_get_current_user();
 			$user_id      = $current_user->ID;
-		} elseif ( ! $user_id && ! IS_PROFILE_PAGE ) {
+		} elseif (!$user_id && !IS_PROFILE_PAGE) {
 			return false;
-		} elseif ( ! get_userdata( $user_id ) ) {
+		} elseif (!get_userdata($user_id)) {
 			return false;
 		}
 
