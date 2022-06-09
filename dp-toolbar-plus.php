@@ -5,7 +5,7 @@
  * Description:       Get more control of WordPress Toolbar (Admin-Bar) - Hide toolbar from front-end based on user roles and capabilities, auto hide/show etc.
  * Requires at least: 5.0
  * Requires PHP:      7.0
- * Version:           1.0.1
+ * Version:           1.0.3
  * Author:            DressPress
  * Author URI:        https://dresspress.org
  * License:           GPLv2 or later

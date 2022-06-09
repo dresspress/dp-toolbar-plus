@@ -2,7 +2,7 @@
 Contributors:      getdp
 Tags:              toolbar, admin-bar
 Tested up to:      5.8.0
-Stable tag:        1.0.1
+Stable tag:        1.0.3
 Requires at least: 5.0
 Requires PHP:      7.0
 License:           GPLv2 or later
@@ -47,6 +47,9 @@ Make the Toolbar hidden by default – and show it when mouse pointer over the t
 1. The toolbar settings
 
 == Changelog ==
+
+= 1.0.3 =
+* Added autoloader.
 
 = 1.0.0 =
 * Release
