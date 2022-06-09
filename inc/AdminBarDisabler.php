@@ -70,7 +70,6 @@ class AdminBarDisabler {
 			$scope = $rule['scope'];
 		}
 
-		require_once 'UserScopeChecker.php';
 		$user_scope_checker = new UserScopeChecker($scope);
 
 		$scoped = $user_scope_checker->inScope();
@@ -85,7 +84,6 @@ class AdminBarDisabler {
 			$scope = $rule['scope'];
 		}
 
-		require_once 'UserScopeChecker.php';
 		$user_scope_checker = new UserScopeChecker($scope);
 
 		$scoped = $user_scope_checker->isScopedUser($user_id);

@@ -15,8 +15,12 @@
  * Tags: admin-bar, toolbar
  */
 
-define('DP_TOOLBAR_DIR', plugin_dir_path(__FILE__));
+namespace DP\Toolbar;
+
+define('DP_TOOLBAR_PATH', plugin_dir_path(__FILE__));
 define('DP_TOOLBAR_URL', plugin_dir_url(__FILE__));
 
-require_once 'inc/Plugin.php';
-DP\Toolbar\Plugin::load();
+require_once DP_TOOLBAR_PATH . 'inc/AutoLoader.php';
+new Autoloader('DP\Toolbar', DP_TOOLBAR_PATH . 'inc');
+
+Plugin::load();

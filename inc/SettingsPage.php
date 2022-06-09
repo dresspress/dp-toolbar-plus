@@ -2,9 +2,9 @@
 
 namespace DP\Toolbar;
 
-use \DP\Toolbar\AdminBarSettings;
+use DP\Toolbar\Settings;
 
-class AdminBarSettingsPage {
+class SettingsPage {
 	public static function init() {
 		add_action('admin_menu', array(__CLASS__, 'add_page'));
 	}
@@ -37,7 +37,7 @@ class AdminBarSettingsPage {
 
 	public static function enqueue_scripts() {
 		// js file.
-		$script_asset_path = DP_TOOLBAR_DIR . 'build/admin.asset.php';
+		$script_asset_path = DP_TOOLBAR_PATH . 'build/admin.asset.php';
 		$admin_js          = 'build/admin.js';
 		$script_asset      = require $script_asset_path;
 		wp_enqueue_script(
@@ -49,7 +49,7 @@ class AdminBarSettingsPage {
 		);
 
 		// set translations.
-		wp_set_script_translations('dp-toolbar-admin', 'dp-toolbar-plus', DP_TOOLBAR_DIR . 'languages/');
+		wp_set_script_translations('dp-toolbar-admin', 'dp-toolbar-plus', DP_TOOLBAR_PATH . 'languages/');
 
 		// css file.
 		$admin_css = 'build/admin.css';
@@ -57,14 +57,14 @@ class AdminBarSettingsPage {
 			'dp-toolbar-admin',
 			DP_TOOLBAR_URL . $admin_css,
 			array('wp-components'),
-			filemtime(DP_TOOLBAR_DIR . $admin_css)
+			filemtime(DP_TOOLBAR_PATH . $admin_css)
 		);
 
 		// Build inline scripts.
 		$roles    = get_editable_roles();
 		$settings = get_option('dp_toolbar_settings');
 
-		$settings = AdminBarSettings::get_settings();
+		$settings = Settings::get_settings();
 
 		$var = array_merge(
 			array('roles' => $roles),

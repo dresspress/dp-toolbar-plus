@@ -2,27 +2,26 @@
 
 namespace DP\Toolbar;
 
-use DP\Toolbar\AdminBarSettings;
-use DP\Toolbar\AdminBarSettingsPage;
+use DP\Toolbar\Settings;
+use DP\Toolbar\SettingsPage;
 use DP\Toolbar\AdminBarDisabler;
 use DP\Toolbar\AdminBarAutoHideShow;
 
 class Plugin {
 	public static function load() {
-		require_once 'AdminBarSettings.php';
-		AdminBarSettings::init();
-
-		if (is_admin()) {
-			require_once 'AdminBarSettingsPage.php';
-			AdminBarSettingsPage::init();
-		}
-
 		add_action('init', array(__CLASS__, 'init'));
 
 		add_action('init', array(__CLASS__, 'load_textdomain'));
+
 		// add_filter( 'load_textdomain_mofile', array( __CLASS__, 'load_textdomain_mofile' ), 10, 2 );
 
 		add_filter('plugin_action_links_' . plugin_basename(__FILE__), array(__CLASS__, 'plugin_action_links'));
+
+		Settings::init();
+
+		if (is_admin()) {
+			SettingsPage::init();
+		}
 	}
 
 	public static function init() {
@@ -34,12 +33,10 @@ class Plugin {
 		}
 		$disabler_settings['disable_user_pref'] = $settings['disable_user_pref'];
 
-		require_once 'AdminBarDisabler.php';
 		AdminBarDisabler::init($disabler_settings);
 
 		// Auto hide/show.
 		if ($settings['auto_hide_show']) {
-			require_once 'AdminBarAutoHideShow.php';
 			AdminBarAutoHideShow::init();
 		}
 

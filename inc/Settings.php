@@ -2,7 +2,7 @@
 
 namespace DP\Toolbar;
 
-class AdminBarSettings {
+class Settings {
 	public static function init() {
 		add_action('init', array(__CLASS__, 'register_settings'));
 	}
