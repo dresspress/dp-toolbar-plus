@@ -9,31 +9,29 @@ use DP\Toolbar\AdminBarAutoHideShow;
 
 class Plugin {
 	public static function load() {
-		add_action('init', array(__CLASS__, 'init'));
+
+
+
 
 		add_action('init', array(__CLASS__, 'load_textdomain'));
-
-		// add_filter( 'load_textdomain_mofile', array( __CLASS__, 'load_textdomain_mofile' ), 10, 2 );
-
-		add_filter('plugin_action_links_' . plugin_basename(__FILE__), array(__CLASS__, 'plugin_action_links'));
 
 		Settings::init();
 
 		if (is_admin()) {
 			SettingsPage::init();
 		}
+
+		add_action('init', array(__CLASS__, 'init'));
+
+		// add_filter( 'load_textdomain_mofile', array( __CLASS__, 'load_textdomain_mofile' ), 10, 2 );
+
+		add_filter('plugin_action_links_' . plugin_basename(__FILE__), array(__CLASS__, 'plugin_action_links'));
 	}
 
 	public static function init() {
 		$settings = get_option('dp_toolbar_settings');
 
-		$disabler_settings = array();
-		if (!empty($settings['front_display_rule']['active'])) {
-			$disabler_settings['front_display_rule'] = $settings['front_display_rule'];
-		}
-		$disabler_settings['disable_user_pref'] = $settings['disable_user_pref'];
-
-		AdminBarDisabler::init($disabler_settings);
+		AdminBarDisabler::init($settings);
 
 		// Auto hide/show.
 		if ($settings['auto_hide_show']) {
@@ -67,7 +65,7 @@ class Plugin {
 	}
 
 	public static function plugin_action_links($actions) {
-		$actions[] = '<a href="' . esc_url(get_admin_url(null, 'options-general.php?page=dp-toolbar-general')) . '">' . __('Settings', 'dp-admin') . '</a>';
+		$actions[] = '<a href="' . esc_url(get_admin_url(null, 'options-general.php?page=dp-toolbar-settings')) . '">' . __('Settings', 'dp-admin') . '</a>';
 
 		return $actions;
 	}

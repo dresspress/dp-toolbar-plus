@@ -15,7 +15,7 @@ class SettingsPage {
 			__('Toolbar Settings', 'dp-toolbar-plus'),
 			__('Toolbar', 'dp-toolbar-plus'),
 			'manage_options',
-			'dp-toolbar-general',
+			'dp-toolbar-settings',
 			array(__CLASS__, 'render_page'),
 			10
 		);
@@ -24,35 +24,34 @@ class SettingsPage {
 	}
 
 	public static function load_page() {
-		add_action('admin_enqueue_scripts', array(__CLASS__, 'enqueue_scripts'));
+		add_action('admin_enqueue_scripts', array(__CLASS__, 'enqueue'));
 		add_filter('admin_body_class', array(__CLASS__, 'admin_body_class'));
 	}
 
 	public static function render_page() { ?>
-		<div class="dp-admin-page-wrap" id="dp-toolbar-settings-page-wrap">
-
+		<div class="dp-admin-page-wrap">
 		</div>
 <?php
 	}
 
-	public static function enqueue_scripts() {
+	public static function enqueue() {
 		// js file.
-		$script_asset_path = DP_TOOLBAR_PATH . 'build/admin.asset.php';
-		$admin_js          = 'build/admin.js';
+		$script_asset_path = DP_TOOLBAR_PATH . 'build/js/settings.asset.php';
+		$js          = 'build/js/settings.js';
 		$script_asset      = require $script_asset_path;
 		wp_enqueue_script(
-			'dp-toolbar-admin',
-			DP_TOOLBAR_URL . $admin_js,
+			'dp-toolbar-settings',
+			DP_TOOLBAR_URL . $js,
 			$script_asset['dependencies'],
 			$script_asset['version'],
 			true
 		);
 
 		// set translations.
-		wp_set_script_translations('dp-toolbar-admin', 'dp-toolbar-plus', DP_TOOLBAR_PATH . 'languages/');
+		wp_set_script_translations('dp-toolbar-settings', 'dp-toolbar-plus', DP_TOOLBAR_PATH . 'languages/');
 
 		// css file.
-		$admin_css = 'build/admin.css';
+		$admin_css = 'build/css/admin.css';
 		wp_enqueue_style(
 			'dp-toolbar-admin',
 			DP_TOOLBAR_URL . $admin_css,
@@ -71,7 +70,7 @@ class SettingsPage {
 			$settings
 		);
 
-		wp_add_inline_script('dp-toolbar-admin', 'var dpToolbarSettings = ' . wp_json_encode($var), $var, 'before');
+		wp_add_inline_script('dp-toolbar-settings', 'var dpToolbarSettings = ' . wp_json_encode($var), $var, 'before');
 	}
 
 	public static function admin_body_class($classes) {

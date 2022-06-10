@@ -6,31 +6,22 @@
 	"license": "GPLv2 or later",
 	"main": "build/index.js",
 	"scripts": {
-		"build": "wp-scripts build",
-		"format": "wp-scripts format",
-		"lint:css": "wp-scripts lint-style",
-		"lint:js": "wp-scripts lint-js",
-		"start": "wp-scripts start",
-		"packages-update": "wp-scripts packages-update",
-		"make-pot": "wp i18n make-pot .",
+		"make-pot": "wp i18n make-pot . languages/dp-toolbar-plus.pot --exclude=src",
 		"make-json": "wp i18n make-json languages",
-		"wp2md": "wp2md -i readme.txt -o README.md"
-	},
-	"bin": {
-		"wp-deploy": "scripts/copy-to-svn.js"
-	},
-	"dependencies": {
-		"@wordpress/block-editor": "^7.0.1",
-		"@wordpress/blocks": "^11.0.1",
-		"@wordpress/components": "^17.0.0",
-		"@wordpress/dom-ready": "^3.2.1",
-		"@wordpress/i18n": "^4.2.1",
-		"@wordpress/interface": "^4.0.1",
-		"commander": "^8.2.0",
-		"shelljs": "^0.8.4"
+		"wp2md": "wp2md -i readme.txt -o README.md",
+		"backup": "git add . && git commit -m \"dev\" && git push origin master",
+		"build": "rm -rf ./build && npx mix --production",
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^18.0.0",
-		"prettier": "^2.3.2"
+		"@babel/preset-react": "^7.16.7",
+		"@wordpress/dependency-extraction-webpack-plugin": "^3.4.1",
+		"@wordpress/interface": "^4.6.0",
+		"browser-sync": "^2.27.9",
+		"browser-sync-webpack-plugin": "^2.3.0",
+		"laravel-mix": "^6.0.43",
+		"resolve-url-loader": "^5.0.0",
+		"sass": "^1.50.1",
+		"sass-loader": "^12.6.0"
 	}
 }

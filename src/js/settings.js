@@ -1,11 +1,7 @@
 /* global dpToolbarSettings */
 
-import './admin.scss';
-
 import domReady from '@wordpress/dom-ready';
-
-import api from '@wordpress/api';
-
+import wpApiFetch from '@wordpress/api-fetch';
 import { __ } from '@wordpress/i18n';
 
 import {
@@ -21,7 +17,7 @@ import {
 
 import { dispatch, useDispatch, useSelect } from '@wordpress/data';
 
-import { Fragment, render, Component, useState } from '@wordpress/element';
+import { render, Component } from '@wordpress/element';
 
 import { store as noticesStore } from '@wordpress/notices';
 
@@ -54,6 +50,8 @@ let capList = [];
 
 const settings = dpToolbarSettings;
 const roles = dpToolbarSettings.roles;
+
+console.log(settings);
 
 for (const [option, role] of Object.entries(roles)) {
 	roleOptions.push({ label: role.name, value: option });
@@ -205,12 +203,12 @@ const DisplayRule = ({
 													onChange={(state) => {
 														roles = state
 															? _.union(roles, [
-																	role.value,
-															  ])
+																role.value,
+															])
 															: _.without(
-																	roles,
-																	role.value
-															  );
+																roles,
+																role.value
+															);
 														onChange({ roles });
 													}}
 												/>
@@ -274,8 +272,6 @@ class Page extends Component {
 		};
 	}
 
-	componentDidMount() {}
-
 	render() {
 		const {
 			front_display_rule,
@@ -287,7 +283,7 @@ class Page extends Component {
 		} = this.state;
 
 		return (
-			<Fragment>
+			<>
 				<div className="dp-admin-page-header">
 					<div className="dp-admin-page-header-container">
 						<h1 className="dp-admin-page-title">
@@ -367,17 +363,18 @@ class Page extends Component {
 								onClick={() => {
 									this.setState({ isSaving: true });
 
-									let settings = new api.models.Settings({
-										dp_toolbar_settings: {
-											front_display_rule,
-											disable_user_pref,
-											auto_hide_show,
-											remove_wp_logo,
+									wpApiFetch({
+										path: '/wp/v2/settings',
+										method: 'POST',
+										data: {
+											dp_toolbar_settings: {
+												front_display_rule,
+												disable_user_pref,
+												auto_hide_show,
+												remove_wp_logo,
+											},
 										},
-									});
-
-									settings
-										.save()
+									})
 										.then(() => {
 											this.setState({ isSaving: false });
 
@@ -418,13 +415,13 @@ class Page extends Component {
 					</div>
 					<Notices />
 				</div>
-			</Fragment>
+			</>
 		);
 	}
 }
 
 domReady(() => {
-	const pageWrap = document.getElementById('dp-toolbar-settings-page-wrap');
+	const pageWrap = document.querySelector('.dp-admin-page-wrap');
 
 	if (pageWrap) {
 		render(<Page />, pageWrap);
