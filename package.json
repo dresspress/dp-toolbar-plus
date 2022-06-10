@@ -9,7 +9,7 @@
 		"make-pot": "wp i18n make-pot . languages/dp-toolbar-plus.pot --exclude=src",
 		"make-json": "wp i18n make-json languages",
 		"wp2md": "wp2md -i readme.txt -o README.md",
-		"backup": "git add . && git commit -m \"dev\" && git push origin master",
+		"backup": "npm run build && git add . && git commit -m \"dev\" && git push origin master",
 		"build": "rm -rf ./build && npx mix --production",
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
