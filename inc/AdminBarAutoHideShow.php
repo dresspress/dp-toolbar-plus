@@ -44,6 +44,10 @@ class AdminBarAutoHideShow {
 					margin-top: 0 !important;
 				}
 
+				.admin-bar {
+					--admin-bar: 0 !important;
+				}
+
 				#wpadminbar {
 					transform: translate(0, -100%);
 					transition: .3s;
